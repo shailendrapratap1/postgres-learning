@@ -12,3 +12,25 @@ CREATE TABLE basics.app_events (
 
     created_at TIMESTAMP DEFAULT NOW()
 );
+
+
+INSERT INTO basics.app_events (event_name, metadata)
+VALUES(
+    'sign_up',
+    '{"browser": "chrome"}'
+),(
+    'sign_in',
+    '{"user" : "sangam"}'
+);
+
+
+
+SELECT * FROM basics.app_events;
+
+SELECT
+  event_name,
+  metadata ->> 'browser' AS browser
+  FROM basics.app_events
+  WHERE metadata ? 'browser';
+
+
